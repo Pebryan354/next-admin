@@ -36,7 +36,7 @@ export default function InputTransaksiPage() {
     {
       id: Date.now(),
       category: 1,
-      details: [{ name: "", nominal: "", transaction_category_id: 1 }],
+      details: [{ name: "", nominal: "" }],
     },
   ]);
 
@@ -50,7 +50,7 @@ export default function InputTransaksiPage() {
       {
         id: Date.now(),
         category: 1,
-        details: [{ name: "", nominal: "", transaction_category_id: 1 }],
+        details: [{ name: "", nominal: "" }],
       },
     ]);
   };
@@ -71,13 +71,7 @@ export default function InputTransaksiPage() {
     setTransactions((prev) =>
       prev.map((cat) =>
         cat.id === id
-          ? {
-              ...cat,
-              details: [
-                ...cat.details,
-                { name: "", nominal: "", transaction_category_id: 1 },
-              ],
-            }
+          ? { ...cat, details: [...cat.details, { name: "", nominal: "" }] }
           : cat
       )
     );
@@ -122,7 +116,7 @@ export default function InputTransaksiPage() {
           cat.details
             .filter((d) => d.name && d.nominal)
             .map((d) => ({
-              transaction_category_id: d.transaction_category_id,
+              transaction_category_id: cat.category,
               name: d.name,
               value_idr: Number(d.nominal),
             }))
