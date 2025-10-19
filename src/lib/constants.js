@@ -1,4 +1,3 @@
-export const API_BASE_URL = "https://api-laravel.my-appweb.com/api";
-export const TOKEN_KEY =
-  "doP4E6sYp76OWeJzeJbyudEcjtw0olqtKCBnrhLANiXp2tV2BhZLByiBILLlcNV4";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+export const TOKEN_KEY = process.env.JWT_SECRET;
 export const USER_KEY = "user";
