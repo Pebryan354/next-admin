@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import {
   Select,
   SelectTrigger,
@@ -375,13 +376,23 @@ export default function EditTransaksiPage() {
         >
           Batal
         </Button>
-        <Button
-          onClick={handleSave}
-          className="bg-green-500 text-white hover:bg-green-600 hover:cursor-pointer"
-          disabled={loading}
+        <ConfirmDialog
+          title="Apakah data sudah benar?"
+          description="Data ini akan diubah"
+          triggerLabel="Ubah"
+          triggerVariant="warning"
+          confirmLabel="Ya, Ubah"
+          confirmVariant="warning"
+          loadingLabel="Mengubah..."
+          onConfirm={() => handleSave()}
         >
-          {loading ? "Loading..." : "Simpan"}
-        </Button>
+          <Button
+            className="bg-green-500 text-white hover:bg-green-600 hover:cursor-pointer"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Simpan"}
+          </Button>
+        </ConfirmDialog>
       </div>
     </div>
   );
