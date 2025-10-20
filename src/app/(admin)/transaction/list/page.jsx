@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import api from "@/lib/api";
 import {
   Select,
@@ -377,13 +378,23 @@ export default function DataPage() {
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
-                    <Button
-                      variant="ghost"
-                      className="text-red-500 hover:text-red-600 hover:cursor-pointer"
-                      onClick={() => handleDelete(item.detail_id)}
+                    <ConfirmDialog
+                      title="Hapus Data?"
+                      description="Data ini akan dihapus secara permanen dan tidak dapat dikembalikan."
+                      triggerLabel="Hapus"
+                      triggerVariant="destructive"
+                      confirmLabel="Ya, Hapus"
+                      confirmVariant="destructive"
+                      loadingLabel="Menghapus..."
+                      onConfirm={() => handleDelete(item.detail_id)}
                     >
-                      <Trash className="h-4 w-4" />
-                    </Button>
+                      <Button
+                        variant="ghost"
+                        className="text-red-500 hover:text-red-600 hover:cursor-pointer"
+                      >
+                        <Trash className="h-4 w-4" />
+                      </Button>
+                    </ConfirmDialog>
                   </TableCell>
                 </TableRow>
               ))
